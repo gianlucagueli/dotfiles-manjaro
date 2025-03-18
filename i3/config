@@ -1,0 +1,323 @@
+# GENERIC CONFIG FOR I3
+# To complete or add custom settings create a config file in $HOME/.config/i3 with at the top:
+# "include path/to/dotfiles-fedora/i3/config"
+#
+# Variables to set:
+# -myTerminal
+
+################################################################################################
+##                                      Defaults:                                             ##
+################################################################################################
+set $mod Mod4
+
+# $HOME/path/to/dotfiles-fedora
+set $dotfiles $HOME/.config/dotfiles-manjaro/
+set $myTerminal terminator
+
+font xft:URWGothic-Book 11
+font pango: DejaVu Sans Mono 10, FontAwesome 10
+
+default_border pixel 2
+default_floating_border normal
+
+hide_edge_borders none
+
+floating_modifier $mod
+
+###############################################################################################
+##                               Window key bindings:                                        ##
+###############################################################################################
+# Audio
+bindsym $mod+Ctrl+m exec pavucontrol
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioRaiseVolume exec "amixer set Master 5%+; $dotfiles/i3/scripts/volume.sh"
+bindsym XF86AudioLowerVolume exec "amixer set Master 5%-; $dotfiles/i3/scripts/volume.sh"
+
+# Brightness
+bindsym XF86MonBrightnessUp exec "brightnessctl set +10%; $dotfiles/i3/scripts/bright.sh"
+bindsym XF86MonBrightnessDown exec "brightnessctl set 10%-; $dotfiles/i3/scripts/bright.sh"
+
+# Windows
+bindsym $mod+u border none
+bindsym $mod+y border pixel 2
+bindsym $mod+n border normal
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+
+bindsym $mod+h split h; exec notify-send -t 1500 'tile horizontally'
+bindsym $mod+v split v; exec notify-send -t 1500 'tile vertically'
+
+bindsym $mod+f fullscreen toggle; exec notify-send -t 1500 'fullscreen toggle'
+bindsym $mod+g fullscreen global; exec notify-send -t 1500 'fullscreen global'
+
+bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+Shift+space floating toggle
+bindsym $mod+space focus mode_toggle
+bindsym $mod+a focus parent
+bindsym $mod+Shift+s sticky toggle
+
+bindsym $mod+m bar mode toggle
+
+# Launch apps
+bindsym $mod+Return exec $myTerminal
+bindsym $mod+d exec --no-startup-id rofi -show drun
+bindsym $mod+t exec --no-startup-id "pkill compton; compton"
+
+# System
+bindsym $mod+Tab exec $dotfiles/i3/scripts/switchKeyboardLayout.sh
+
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+
+bindsym $mod+Shift+q kill
+bindsym $mod+Ctrl+x --release exec --no-startup-id xkill
+
+bindsym $mod+Shift+p exec i3lock
+
+bindsym $mod+Shift+e mode "$mode_system"
+set $mode_system (l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3lock, mode "default"
+    bindsym e exec --no-startup-id systemctl exit, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+
+###############################################################################################
+##                               Workspaces settings:                                        ##
+###############################################################################################
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+Shift+Ctrl+Left move workspace to output left
+bindsym $mod+Shift+Ctrl+Down move workspace to output down
+bindsym $mod+Shift+Ctrl+Up move workspace to output up
+bindsym $mod+Shift+Ctrl+Right move workspace to output right
+
+bindsym $mod+Ctrl+Right workspace next
+bindsym $mod+Ctrl+Left workspace prev
+
+workspace_auto_back_and_forth yes
+bindsym $mod+b workspace back_and_forth
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+# for_window [urgent=latest] focus
+
+set $ws1 1:
+set $ws2 2:
+set $ws3 3:
+set $ws4 4:
+set $ws5 5:
+set $ws6 6:
+set $ws7 7:7
+set $ws8 8:8
+set $ws9 9:9
+set $ws10 10:10
+set $ws11 11:11
+set $ws12 12:12
+set $ws13 13:13
+set $ws14 14:14
+set $ws15 15:15
+set $ws16 16:
+set $ws17 17:
+set $ws18 18:
+set $ws19 19:
+set $ws20 20:
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+bindsym $mod+Ctrl+1 workspace $ws11
+bindsym $mod+Ctrl+2 workspace $ws12
+bindsym $mod+Ctrl+3 workspace $ws13
+bindsym $mod+Ctrl+4 workspace $ws14
+bindsym $mod+Ctrl+5 workspace $ws15
+bindsym $mod+Ctrl+6 workspace $ws16
+bindsym $mod+Ctrl+7 workspace $ws17
+bindsym $mod+Ctrl+8 workspace $ws18
+bindsym $mod+Ctrl+9 workspace $ws19
+bindsym $mod+Ctrl+0 workspace $ws20
+
+bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10; workspace $ws10
+bindsym $mod+Shift+Ctrl+1 move container to workspace $ws11; workspace $ws11
+bindsym $mod+Shift+Ctrl+2 move container to workspace $ws12; workspace $ws12
+bindsym $mod+Shift+Ctrl+3 move container to workspace $ws13; workspace $ws13
+bindsym $mod+Shift+Ctrl+4 move container to workspace $ws14; workspace $ws14
+bindsym $mod+Shift+Ctrl+5 move container to workspace $ws15; workspace $ws15
+bindsym $mod+Shift+Ctrl+6 move container to workspace $ws16; workspace $ws16
+bindsym $mod+Shift+Ctrl+7 move container to workspace $ws17; workspace $ws17
+bindsym $mod+Shift+Ctrl+8 move container to workspace $ws18; workspace $ws18
+bindsym $mod+Shift+Ctrl+9 move container to workspace $ws19; workspace $ws19
+bindsym $mod+Shift+Ctrl+0 move container to workspace $ws20; workspace $ws20
+
+# for_window [urgent=latest] focus
+
+assign [class="Brave"] $ws1
+assign [class="Gnome-terminal"] $ws2
+assign [class="jetbrains-idea"] $ws3
+assign [class="Postman"] $ws6
+assign [class="discord"] $ws18
+assign [class="TelegramDesktop"] $ws18
+assign [class="Slack"] $ws18
+assign [class="Spotify"] $ws20
+
+for_window [class="Blueman-manager"] floating enable
+for_window [class="Pavucontrol"] floating enable
+for_window [class="Nm-connection-editor"] floating enable
+for_window [class="gnome-calculator"] floating enable
+for_window [class="Arandr"] floating enable
+
+bindsym $mod+r mode "resize"
+mode "resize" {
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
+exec_always --no-startup-id compton
+
+set_from_resource $term_background #00CCFF
+set_from_resource $term_foreground #00CCFF
+
+set $bg-color 	         #00CCFF
+set $inactive-bg-color   #2f343f
+set $text-color          #2f343f
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+# class                     border               background             text                    child_border
+  client.focused            $bg-color            $bg-color              $text-color             #FDF6E3
+  client.focused_inactive   $inactive-bg-color   $inactive-bg-color     $inactive-text-color    #FDF6E3
+  client.unfocused          $inactive-bg-color   $inactive-bg-color     $inactive-text-color    #FDF6E3
+  client.urgent             $urgent-bg-color     $urgent-bg-color       $inactive-text-color    #FDF6E3
+  client.placeholder        #000000 		     #0c0c0c         		#ffffff 		        #FDF6E3
+
+  client.background       #000000
+
+###############################################################################################
+##                                   i3-gaps settings:                                       ##
+##                    press $mod+Shift+g to enter the gap mode.                              ##
+###############################################################################################
+gaps inner 14
+gaps outer 5
+
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+###############################################################################################
+##                                   i3-bar settings:                                        ##
+###############################################################################################
+
+bar {
+  i3bar_command i3bar
+  status_command i3status --config $dotfiles/i3status/conf
+  font pango:Hack 9, FontAwesome 9
+  position bottom
+  tray_output  primary
+  strip_workspace_numbers yes
+
+  set $primary #00CCFF
+  colors {
+    background #14191D
+    statusline #EEEEEE
+    separator  #454947
+
+    #                  border       backgr.     text
+    focused_workspace  #00CCFF      #00CCFF     #292F34
+    active_workspace   #595B5B      #353836     #FDF6E3
+    inactive_workspace #595B5B      #222D31     #EEE8D5
+    binding_mode       #16a085      #2C2C2C     #F9FAF9
+    urgent_workspace   #16a085      #FDF6E3     #E5201D
+  }
+}
+
+###############################################################################################
+##                                Autostart settings:                                        ##
+###############################################################################################
+
+exec --no-startup-id $HOME/.screenlayout/default.sh
+exec --no-startup-id nm-applet
+exec --no-startup-id volumeicon
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id clipit
+exec --no-startup-id blueman-applet
+exec --no-startup-id setxkbmap us
+
+exec_always --no-startup-id nitrogen --restore; sleep 1; compton
+exec_always --no-startup-id killall volumeicon; volumeicon

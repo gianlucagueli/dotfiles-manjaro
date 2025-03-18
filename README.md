@@ -1,1 +1,1 @@
-# dotfiles-manjaro
+# dotfiles-fedora

@@ -1,0 +1,87 @@
+# i3status configuration file.
+# see "man i3status" for documentation.
+
+# It is important that this file is edited as UTF-8.
+# The following line should contain a sharp s:
+# ß
+# If the above line is not correctly displayed, fix your editor first!
+
+general {
+        colors = true
+        interval = 5
+        color_good = "#23CC20"
+        color_degraded = "#E4CF00"
+        color_bad = "#CB0012"
+
+}
+
+# order += "ipv6"
+order += "cpu_usage"
+order += "disk /"
+# order += "disk /home"
+order += "ethernet _first_"
+order += "wireless _first_"
+order += "battery all"
+# order += "load"
+order += "memory"
+order += "tztime local"
+
+cpu_usage {
+        format = "CPU  %usage"
+        degraded_threshold = 75
+        max_threshold = 90
+}
+
+load {
+        format = " load %1min "
+        # max_threshold = 0.3
+}
+
+disk "/" {
+        # format = " hdd %avail "
+        format = " ⛁  %avail  -  %percentage_free"
+        
+}
+
+
+wireless _first_ {
+        format_up = "WLS: (%quality at %essid, %bitrate) %ip"
+        format_down = "WLS: down"
+}
+
+ethernet _first_ {
+# if you use %speed, i3status requires root privileges
+        format_up = " ETH: %ip (%speed) "
+        format_down = "ETH: down"
+}
+
+battery all {
+        # path /sys/class/power_supply/BAT0/uevent
+        # format = "%status %percentage %remaining %emptytime"
+        format = " %status %percentage  -  %remaining"
+        format_down = "No battery"
+        last_full_capacity = true
+        integer_battery_capacity = true
+        # status_chr = ""
+        status_chr = "⚡"
+        # status_bat = "☉"
+        status_bat = "🔋"
+        status_unk = ""
+        status_full = ""
+
+        
+        low_threshold = 20
+        threshold_type = percentage
+}
+
+memory {
+        format = "%used | %available"
+        threshold_degraded = "1G"
+        format_degraded = "MEMORY < %available"
+}
+
+tztime local {
+        # format = "%Y-%m-%d %H:%M:%S"
+        format = " %d.%m.%Y  %H:%M "
+
+}
