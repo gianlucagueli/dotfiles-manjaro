@@ -287,7 +287,7 @@ mode "$mode_gaps_outer" {
 bar {
   i3bar_command i3bar
   status_command i3status --config $dotfiles/i3status/conf
-  font pango:Hack 9, FontAwesome 9
+  font pango: FontAwesome 10
   position bottom
   tray_output  primary
   strip_workspace_numbers yes
@@ -318,6 +318,7 @@ exec --no-startup-id xfce4-power-manager
 exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
 exec --no-startup-id setxkbmap us
+exec --no-startup-id slack
 
 exec_always --no-startup-id nitrogen --restore; sleep 1; compton
 exec_always --no-startup-id killall volumeicon; volumeicon
