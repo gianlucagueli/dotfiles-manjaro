@@ -189,7 +189,7 @@ bindsym $mod+Shift+Ctrl+0 move container to workspace $ws20; workspace $ws20
 # for_window [urgent=latest] focus
 
 assign [class="Brave"] $ws1
-assign [class="Gnome-terminal"] $ws2
+assign [class="(?i)terminator"] $ws2
 assign [class="jetbrains-idea"] $ws3
 assign [class="Postman"] $ws6
 assign [class="discord"] $ws18
@@ -311,7 +311,6 @@ bar {
 ##                                Autostart settings:                                        ##
 ###############################################################################################
 
-exec --no-startup-id $HOME/.screenlayout/default.sh
 exec --no-startup-id nm-applet
 exec --no-startup-id volumeicon
 exec --no-startup-id xfce4-power-manager
@@ -319,6 +318,8 @@ exec --no-startup-id clipit
 exec --no-startup-id blueman-applet
 exec --no-startup-id setxkbmap us
 exec --no-startup-id slack
+exec --no-startup-id flameshot
 
 exec_always --no-startup-id nitrogen --restore; sleep 1; compton
 exec_always --no-startup-id killall volumeicon; volumeicon
+exec_always --no-startup-id $dotfiles/i3/scripts/screenlayout.sh
