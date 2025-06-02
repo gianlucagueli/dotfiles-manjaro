@@ -1,5 +1,6 @@
 # To include this file, add in your .zshrc file:
 # "source path/to/dotfiles-fedora/zshrc"
+# define DOTFILES env 
 
 export ZSH="$HOME/.oh-my-zsh"
 export TRASH_DIR="$HOME/.local/trash"
@@ -43,6 +44,8 @@ alias copy="xclip -selection clipboard"
 
 alias df="df -h"
 alias free="free -h"
+
+alias bright='$DOTFILES/i3/scripts/brightness.sh'
 
 # Safe remove
 remove() {
