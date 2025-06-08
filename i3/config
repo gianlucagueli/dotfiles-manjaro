@@ -122,7 +122,6 @@ bindsym $mod+b workspace back_and_forth
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 # for_window [urgent=latest] focus
-
 set $ws1 1:
 set $ws2 2:
 set $ws3 3:
@@ -133,13 +132,13 @@ set $ws7 7:7
 set $ws8 8:8
 set $ws9 9:9
 set $ws10 10:10
-set $ws11 11:11
+set $ws11 11:
 set $ws12 12:12
-set $ws13 13:13
-set $ws14 14:14
-set $ws15 15:15
-set $ws16 16:
-set $ws17 17:
+set $ws13 13:
+set $ws14 14:
+set $ws15 15:
+set $ws16 16:16
+set $ws17 17:
 set $ws18 18:
 set $ws19 19:
 set $ws20 20:
@@ -187,21 +186,26 @@ bindsym $mod+Shift+Ctrl+9 move container to workspace $ws19; workspace $ws19
 bindsym $mod+Shift+Ctrl+0 move container to workspace $ws20; workspace $ws20
 
 # for_window [urgent=latest] focus
-
-assign [class="Brave"] $ws1
+assign [class="(?i)brave"] $ws1
 assign [class="(?i)terminator"] $ws2
-assign [class="jetbrains-idea"] $ws3
-assign [class="Postman"] $ws6
-assign [class="discord"] $ws18
-assign [class="TelegramDesktop"] $ws18
-assign [class="Slack"] $ws18
-assign [class="Spotify"] $ws20
+assign [class="(?i)jetbrains-idea"] $ws3
+assign [class="(?i)dbeaver"] $ws5
+assign [class="(?i)another-redis-desktop-manager"] $ws5
+assign [class="(?i)postman"] $ws6
+assign [class="(?i)org.gnome.nautilus"] $ws13
+assign [class="(?i)gimp-2.10"] $ws15
+assign [class="(?i)blueman-manager"] $ws17
+assign [class="(?i)pavucontrol"] $ws17
+assign [class="(?i)nm-connection-editor"] $ws17
+assign [class="(?i)arandr"] $ws17
+assign [class="(?i)discord"] $ws18
+assign [class="(?i)telegramdesktop"] $ws18
+assign [class="(?i)slack"] $ws18
+assign [class="(?i)obs"] $ws19
+assign [class="(?i)vlc"] $ws19
+assign [class="(?i)spotify"] $ws20
 
-for_window [class="Blueman-manager"] floating enable
-for_window [class="Pavucontrol"] floating enable
-for_window [class="Nm-connection-editor"] floating enable
 for_window [class="gnome-calculator"] floating enable
-for_window [class="Arandr"] floating enable
 
 bindsym $mod+r mode "resize"
 mode "resize" {
